@@ -1,3 +1,10 @@
+# For STAT550 project
+
+To get data, run [`get_hist.sh`]. Data are under [`updates/`]
+
+
+
+
 # Epidemiological Data from the COVID-19 Outbreak in Canada
 
 The [**COVID-19 Canada Open Data Working Group**](https://opencovid.ca/) collects daily time series data on COVID-19 cases, deaths, recoveries, testing and vaccinations at the health region and province levels. Data are collected from publicly available sources such as government datasets and news releases. Updates are made nightly at 22:00 ET. See [`data_notes.txt`](https://github.com/ccodwg/Covid19Canada/blob/master/data_notes.txt) for notes regarding the latest data update. Our data collection is mostly automated; see [`Covid19CanadaETL`](https://github.com/ccodwg/Covid19CanadaETL) for details.
