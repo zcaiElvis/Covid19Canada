@@ -1,4 +1,4 @@
-# For STAT550 project
+# For STAT520 project
 
 To get data, run [`get_hist.sh`]. Data are under [`updates/`]
 
