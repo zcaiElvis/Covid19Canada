@@ -14,3 +14,4 @@ vaccine_completion_cumulative.csv
 
 # optional files
 email.txt
+.DS_Store
