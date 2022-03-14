@@ -7,7 +7,7 @@ api_short$Date <- as.Date(api_short$Date)
 api_short <- group_by(api_short, Date)
 
 
-# write.table(x = api_short, file="modified_commit.csv", col.names=FALSE, row.names=FALSE)
+write.table(x = api_short, file="intermediate/commits.csv", col.names=TRUE, row.names=FALSE)
 
 git_c1 <- "git show --name-only "
 git_c2 <- ":timeseries_canada/cases_timeseries_canada.csv >> updates/"  
