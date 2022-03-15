@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 rm -f intermediate/hist.csv
 rm -f intermediate/hist_msg.csv
 rm -f -r updates.nosync
