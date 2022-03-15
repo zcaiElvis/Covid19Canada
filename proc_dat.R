@@ -1,6 +1,5 @@
 library(stringr)
 
-<<<<<<< HEAD
 csv_files <- list.files(path="updates.nosync", full.name=TRUE)
 date_list <- read.table("intermediate/commits.csv", header=TRUE, sep="")
 date_list <- sort(date_list[,1], decreasing=FALSE)
@@ -25,8 +24,6 @@ for(i in 1:inter){
   print(idx)
   df_covid[idx,]$val <- paste(df_covid[idx,]$val, df[idx,]$cases)
 }
-
-
 
 
 write.table(x = df_covid, file="intermediate/changes.csv", col.names=TRUE, row.names=FALSE)
