@@ -1,0 +1,47 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library(stringr)
+> 
+> ### Read list of files
+> csv_files <- list.files(path="updates.nosync", full.name=TRUE)
+> date_list <- read.table("intermediate/commits.csv", header=TRUE, sep="")
+> date_list <- sort(date_list[,1], decreasing=FALSE)
+> 
+> 
+> ### Construct base file from the newest edition
+> latest <- read.csv(tail(csv_files, 1), header=TRUE, sep=",")
+> df_covid <- latest
+> df_covid$reported <- rep(NA, length(nrow(df_covid)))
+> 
+> 
+> 
+> ### Fill the base file with the newest
+> ### date of each file as the "reported"
+> for(i in 1:length(csv_files)){
++   df <- read.csv(csv_files[i], header=TRUE, sep=",")
++   lastofdf <- tail(df, 1)
++   df_covid[which(df_covid$date_report == lastofdf$date_report),]$reported <- lastofdf$cases
++ }
+Error in `$<-.data.frame`(`*tmp*`, "reported", value = 4986L) : 
+  replacement has 1 row, data has 0
+Calls: $<- -> $<-.data.frame
+Execution halted

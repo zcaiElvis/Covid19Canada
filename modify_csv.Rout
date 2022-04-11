@@ -1,0 +1,70 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> 
+> ### Set number of days to retrieve data
+> retrieval_length <- 500
+> 
+> 
+> ### Clean up git commit history file
+> api_commit <- read.table("intermediate/hist.csv")
+> api_info <- read.table("intermediate/hist_msg.csv", fill=TRUE)
+> api_short <- data.frame(Date = api_info$V3[1:retrieval_length], Commit = api_commit$V1[1:retrieval_length])
+> api_short$Date <- as.Date(api_short$Date)
+> api_short <- group_by(api_short, Date)
+> api_short <- na.omit(api_short)
+> write.table(x = api_short, file="intermediate/commits.csv", col.names=TRUE, row.names=FALSE)
+> 
+> 
+> ### Make request message
+> ### only track changes to cases_timeseries_canada.csv
+> 
+> git_c1 <- "git show --name-only "
+> git_c2 <- ":timeseries_canada/cases_timeseries_canada.csv >> updates.nosync/"  
+> git_c3 <- ".csv"
+> 
+> for (row in 1:nrow(api_short)){
++   date <- api_short$Date[row]
++   comm <- api_short$Commit[row]
++   git_command <- paste(git_c1, as.character(comm), git_c2, as.character(date), git_c3, sep="")
++   system(git_command)
++ }
+> 
+> ### Request data
+> print(paste("Success, time: ", as.character(Sys.time())), sep="")
+[1] "Success, time:  2022-04-10 19:10:30"
+> 
+> 
+> proc.time()
+   user  system elapsed 
+  1.316   1.188   3.169 

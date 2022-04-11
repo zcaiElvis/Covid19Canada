@@ -1,6 +1,13 @@
-# For STAT520 project
+# For elvis' research
 
-To get data, run [`get_hist.sh`]. Data are under [`updates/`]
+* Run <get_hist.sh> to get the data. Stored in <updates.nosync/> folder
+* <modify_csv.R> request and construct data
+* <proc_dat.R> make data into "reported" and "revised" format
+* reported-revised format data can be found in <intermediate/changes.csv>
+
+## Notes
+* In <modify_csv.R>, <retrieval_length> is set to 500, meaning to retrieve the most recent 500 commits
+* Name of each csv file match with the last date of that csv file only starts from 11-13-2021. Therefore, csv file names shouldn't be used as date index, but rather, the last date of each csv file.
 
 
 
